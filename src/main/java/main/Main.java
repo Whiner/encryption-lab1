@@ -1,19 +1,14 @@
 package main;
 
-import java.io.IOException;
-
 public class Main {
+    private static final String WORD_FOR_CODE = "Prison cipher is a method of transcoding a message in order to bring " +
+            "it to a form convenient for transmission over a communication channel";
+    private static final String KEY = "alahuachs";
 
-    public static void main(String[] args) throws IOException {
-        RC6.encrypt(
-                "input.txt",
-                "output.txt",
-                "0123456789abcdef0112233445566778899aabbccddeeff01032547698badcfe"
-        );
-        RC6.decrypt(
-                "output.txt",
-                "output-decr.txt",
-                "0123456789abcdef0112233445566778899aabbccddeeff01032547698badcfe"
-        );
+    public static void main(String... args) {
+        JailEncoder jailEncoder = new JailEncoder(KEY);
+        String coded = jailEncoder.encodeWord(WORD_FOR_CODE);
+        String decoded = jailEncoder.decodeWord(coded);
+        System.out.println("DECODED WORD: " + decoded);
     }
 }
